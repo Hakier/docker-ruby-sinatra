@@ -7,10 +7,13 @@ Docker for hosting [Sinatra](http://www.sinatrarb.com) apps
         -p 80:80 \
         -v /path/to/sinatra/app:/usr/src/app \
         -e MAIN_APP_FILE=my-app.rb \
+        -e PATH_TO_SASS_FILES=my-sass-dir \
         -d erikap/ruby-sinatra
         
 The Docker image exposes port 80.
 
 The Ruby source code is mounted in `/usr/src/app`. The main Sinatra file is configured at container start up via the `MAIN_APP_FILE` environment variable. If not set, it defaults to `web.rb`.
+
+Path to sass files inside app dir is configured at container startup via the `PATH_TO_SASS_FILES` environment variable. If not set, will not watch sass files for changes.
 
 Dependencies can be installed through [Bundler](http://bundler.io) by providing a Gemfile. The Sinatra gem is installed by default. The environment can be set via the `RACK_ENV` environment variable. If not set, it defaults to `production`.

@@ -7,7 +7,11 @@ then
 else
   bundle install
   gem install shotgun
-  shotgun -I /usr/src/app $MAIN_APP_FILE -p 80 -o '0.0.0.0'
+  if [ "$PATH_TO_SASS_FILES" != '' ];
+  then
+    sass -wc /usr/src/app/$PATH_TO_SASS_FILES &
+  fi
+  cd /usr/src/app && shotgun -o '0.0.0.0' -p 80
 fi
 
 
